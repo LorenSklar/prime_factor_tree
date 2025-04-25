@@ -1,0 +1,20 @@
+# Python bytecode
+__pycache__/
+*.pyc
+
+# Virtual environment
+venv/
+
+# Testing
+.pytest_cache/
+
+# Environment variables
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# Personal notes
+FEEDBACK.md
+RULES.md
