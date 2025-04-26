@@ -32,12 +32,33 @@ pip install -r requirements.txt
 # Add project root to PYTHONPATH
 export PYTHONPATH=$PYTHONPATH:$(pwd)
 
+# Default test command
+TEST_CMD="pytest tests/"
+
+# Parse command line arguments
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -v|--verbose)
+            TEST_CMD="$TEST_CMD -v"
+            shift
+            ;;
+        -s|--show-output)
+            TEST_CMD="$TEST_CMD -s"
+            shift
+            ;;
+        -c|--coverage)
+            TEST_CMD="$TEST_CMD --cov=app"
+            shift
+            ;;
+        *)
+            echo "Unknown option: $1"
+            exit 1
+            ;;
+    esac
+done
+
 # Run tests
 echo "Running tests..."
-pytest tests/
-
-# Optional: Run with coverage
-# echo "Running tests with coverage..."
-# pytest --cov=app tests/
+$TEST_CMD
 
 echo "Tests completed!" 
